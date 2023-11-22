@@ -49,7 +49,7 @@ return [
         ContainsCaseSensitiveFilter::class,
     ],
 
-    'silent' => true,
+    'silent' => false,
 
     'custom_filters_location' => app_path('Filters'),
 ];

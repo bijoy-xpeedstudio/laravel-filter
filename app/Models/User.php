@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use MongoDB\Laravel\Eloquent\Model as Eloquent;
+use Abbasudo\Purity\Traits\Filterable;
 
 class User extends Eloquent implements AuthenticatableContract
 {
-    use AuthenticableTrait, HasApiTokens, HasFactory, Notifiable;
+    use AuthenticableTrait, HasApiTokens, HasFactory, Notifiable, Filterable;
 
     /**
      * The attributes that are mass assignable.
@@ -42,5 +43,18 @@ class User extends Eloquent implements AuthenticatableContract
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+    ];
+
+    /**
+     * Filterable Fildes
+     */
+    protected $filterFields = [
+        'name',
+        'email',
+        '_id',
+    ];
+
+    public $fillableAttribut = [
+        'foo' => 'bar'
     ];
 }

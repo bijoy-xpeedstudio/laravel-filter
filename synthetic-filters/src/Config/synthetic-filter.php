@@ -291,4 +291,5 @@ return [
             ],
         ],
     ],
+    'table_prefix' => 'revision',
 ];

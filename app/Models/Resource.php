@@ -28,7 +28,7 @@ class Resource extends Model
     public function replies()
     {
         return $this->hasMany(Resource::class, 'parent_comment_id', 'id')
-            ->from(config('synthetic-comments.table_prefix') . '_' . $this->table)
+            ->from(config('synthetic-comments.table_prefix').'_'.$this->table)
             ->SetDatabase();
     }
 }

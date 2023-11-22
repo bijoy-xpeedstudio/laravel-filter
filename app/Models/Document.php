@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Illuminate\Database\Eloquent\Model;
 use MongoDB\Laravel\Eloquent\Model;
-use SyntheticComments\trait\CommentTrait;
+// use SyntheticComments\trait\CommentTrait;
 use SyntheticFilters\Traits\FilterTrait;
-use SyntheticRevisions\trait\RevisionableTrait;
+use SyntheticRevisions\Trait\RevisionableTrait;
 
 class Document extends Model
 {
-    use CommentTrait, FilterTrait,HasFactory,RevisionableTrait;
+    use  FilterTrait, HasFactory, RevisionableTrait;
 
     protected $fillable = [
         'name', 'description', 'user_id',
@@ -40,5 +40,4 @@ class Document extends Model
             'isMultiSelect' => 1,
         ],
     ];
-
 }

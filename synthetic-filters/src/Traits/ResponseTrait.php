@@ -8,7 +8,7 @@ trait ResponseTrait
 
     public function response($status = 200, array $data = [], array $headers = [], $tracer = null)
     {
-        
+
         $response = [
             'message' => [
                 $this->errorMessages,
@@ -16,6 +16,7 @@ trait ResponseTrait
             'tracer' => $tracer,
             'data' => null,
         ];
+
         if (isset($data['data'])) {
             $response = array_merge($response, $data);
         } else {
@@ -27,7 +28,7 @@ trait ResponseTrait
 
     public function log($type, $message)
     {
-        if (!isset($this->errorMessages[$type])) {
+        if (! isset($this->errorMessages[$type])) {
             $this->errorMessages[$type] = [];
         }
 

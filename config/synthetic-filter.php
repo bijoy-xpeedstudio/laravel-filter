@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'row_limit' => 5,
+    'column_limit' => 3,
     'fieldTypes' => [
         'string' => [
             'contains' => [
@@ -183,8 +185,6 @@ return [
 
         ],
     ],
-    'row_limit' => 5,
-    'column_limit' => 3,
     'allRules' => [
         'text' => [
             '$eq' => [
@@ -290,41 +290,6 @@ return [
                 'field' => null,
             ],
         ],
-        'date' => [
-            '$eq' => [
-                'label' => 'Equal',
-                'field' => '',
-            ],
-            'before' => [
-                'label' => 'Before',
-                'condition' => '$lt',
-            ],
-            'before_or_equal' => [
-                'label' => 'Before or Equal',
-                'condition' => '$lte',
-            ],
-            'after' => [
-                'label' => 'After',
-                'condition' => '$gt',
-            ],
-            'after_or_equal' => [
-                'label' => 'After or Equal',
-                'condition' => '$gte',
-            ],
-            'between' => [
-                'label' => 'Between',
-                'condition' => '$between',
-            ],
-            'is_empty' => [
-                'label' => 'Is Empty',
-                'condition' => '$null',
-            ],
-            'is_not_empty' => [
-                'label' => 'Is Not Empty',
-                'condition' => '$notNull',
-            ],
-        ],
-
     ],
-
+    'table_prefix' => 'table',
 ];

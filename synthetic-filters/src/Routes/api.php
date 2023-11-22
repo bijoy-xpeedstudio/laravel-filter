@@ -1,8 +1,4 @@
 <?php
-
-use Illuminate\Support\Facades\Route;
-use SyntheticFilters\Controllers\FilterController;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,3 +9,9 @@ use SyntheticFilters\Controllers\FilterController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+use Illuminate\Support\Facades\Route;
+use SyntheticFilters\Controllers\FilterController;
+
+Route::get('filter/module/{module}/{prefix}/{model}', [FilterController::class, 'searchSelect'])->name('search_select');
+Route::get('filter/list/module/{module}/{prefix}/{model}', [FilterController::class, 'listWithSearch'])->name('listWithSearch');

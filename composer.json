@@ -7,11 +7,14 @@
     "require": {
         "php": "^8.1",
         "abbasudo/laravel-purity": "^2.0",
+        "doctrine/dbal": "^3.5.1",
         "guzzlehttp/guzzle": "^7.2",
+        "haydenpierce/class-finder": "^0.5.3",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
-        "mongodb/laravel-mongodb": "^4.0"
+        "mongodb/laravel-mongodb": "^4.0",
+        "yosuite/synthetic-revisions": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -28,19 +31,25 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "SyntheticFilters\\": "synthetic-filters/src"
+            "SyntheticFilters\\": "synthetic-filters/src",
+            "SyntheticRevisions\\": "synthetic-revisions/src"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/",
-            "SyntheticFilters\\": "synthetic-filters/src"
+            "SyntheticFilters\\": "synthetic-filters/src",
+            "SyntheticRevisions\\": "synthetic-revisions/src"
         }
     },
     "repositories": [
         {
             "type": "path",
             "url": "synthetic-filters"
+        },
+        {
+            "type": "path",
+            "url": "synthetic-revisions"
         }
     ],
     "scripts": {

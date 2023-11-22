@@ -25,7 +25,7 @@ trait ApiResponseTrait
 
     public function log($type, $message)
     {
-        if (!isset($this->errorMessages[$type])) {
+        if (! isset($this->errorMessages[$type])) {
             $this->errorMessages[$type] = [];
         }
 

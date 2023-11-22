@@ -6,72 +6,103 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Illuminate\Database\Eloquent\Model;
 use MongoDB\Laravel\Eloquent\Model;
 use SyntheticFilters\Traits\FilterTrait;
+use SyntheticRevisions\Trait\RevisionableTrait;
 
 class Post extends Model
 {
-    use FilterTrait, HasFactory;
-    protected $fillable = ['title', 'description', 'status', 'user_id', 'category_id'];
+    use FilterTrait, HasFactory, RevisionableTrait;
+    protected $fillable = ['name', 'job_title', 'line_manager', 'department', 'Office', 'employee_status', 'account'];
     public static $print;
-    protected static function boot()
-    {
-        dd("Boot ");
-    }
-    public $filterableAttributes = [
-        'title' => [
+
+    public $fillableAttributes = [
+        'name' => [
             'type' => self::TEXT,
-            'label' => 'Title',
+            'label' => 'Name',
+            'validation' => [
+                "default" => "required",
+                "update" => ""
+            ],
         ],
-        'description' => [
+        'job_title' => [
             'type' => self::TEXT,
-            'label' => 'Title',
+            'label' => 'Job Title',
         ],
-        'status' => [
-            'type' => self::SELECT,
-            'label' => 'Status',
-            'isMultiSelect' => true,
+        'line_manager' => [
+            'type' => self::TEXT,
+            'label' => 'Line Manager',
         ],
-        'user_id' => [
+        'department_id' => [
             'type' => self::SELECT,
-            'label' => 'Employee ID',
-            'isMultiSelect' => true,
+            'label' => 'Department',
             //relation
             'relation' => 'user',
+            'model' => self::class, //change for filter
+            'relation_key' => '_id', //chage for filter
+            'isMultiSelect' => true,
+            'endpoint' => 'filter/list/module/app/models/department'
         ],
-        'category_id' => [
-            'type' => self::SELECT,
-            'label' => 'Category',
-            'model' => Category::class,
-            'isMultiSelect' => false,
+        'Office' => [
+            'type' => self::CHECKBOX,
+            'label' => 'Office',
             //relation
-            'relation' => 'category',
-            'relationField' => [
-                'name', 'status'
+            'model' => Category::class, // if model set then endpoint paramater append from filter package
+            'relation_key' => '_id',
+            'isMultiSelect' => true, // for select and checkbox
+            'validation' => [
+                "default" => "required",   //by default set default if update then update
+                "update" => ""
+            ],
+            'endpoint' => 'filter/list/module/app/models/flag'
+        ],
+        'employee_status' => [
+            'type' => self::TEXT,
+            'label' => 'Employee Status'
+        ],
+        'account' => [
+            'type' => self::SELECT,
+            'label' => 'Account',
+            'optionData' => [
+                'active' => 'Active',
+                'deactive' => 'Deactive'
             ]
         ],
-
+        'created_at' => [
+            'type' => 'datepicker',
+            'label' => 'Created at'
+        ]
     ];
+
     protected $sortFields = [
-        'title', 'description', 'status', 'user_id', 'category_id',
+        'name', 'job_title', 'line_manager', 'department', 'Office', 'employee_status', 'account'
     ];
 
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id');
+    }
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Develop for make flat array from relation object
+     * Ex. category_name: 'fooo'
+     */
     protected function getValidRelations()
     {
         return [
-            'category_id' => [
-                'relationWith' => 'category',
+            'department_id' => [
+                'relationWith' => 'department',
                 'relationColumn' => [
-                    'name', 'status'
-                ]
-            ]
+                    'name',
+                ],
+            ],
         ];
     }
 }

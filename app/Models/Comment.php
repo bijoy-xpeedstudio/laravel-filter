@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\Laravel\Eloquent\Model;
-use SyntheticComments\trait\CommentTrait;
+// use SyntheticComments\trait\CommentTrait;
 
 class Comment extends Model
 {
-    use CommentTrait, HasFactory;
+    use HasFactory;
 
     protected $fillable = [
         'resource', 'resource_id', 'parent_comment_id', 'body', 'type', 'visibility', 'user_id',

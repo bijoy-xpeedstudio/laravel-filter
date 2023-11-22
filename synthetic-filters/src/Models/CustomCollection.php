@@ -14,9 +14,9 @@ class CustomCollection extends Collection
 
     /**
      * This method change the objects into a flat array
-     * ex: category_name comes from 
+     * ex: category_name comes from
      * category{
-     *      'name': 'xpeed-studio'     
+     *      'name': 'xpeed-studio'
      * }
      */
     public function toFlatArray()
